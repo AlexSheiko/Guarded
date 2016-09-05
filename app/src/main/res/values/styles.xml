@@ -22,7 +22,7 @@
         <item name="android:background">@drawable/input_field_background</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
 </resources>
