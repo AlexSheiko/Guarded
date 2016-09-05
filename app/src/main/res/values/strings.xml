@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Guarded Guard</string>
+    <string name="app_name">Guarded</string>
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
     <string name="button_login">Login</string>
