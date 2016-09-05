@@ -69,14 +69,15 @@ public class LoginActivity extends AppCompatActivity {
                     saveUser(user);
                     // Navigate to the home screen
                     startActivity(new Intent(LoginActivity.this, GuardsActivity.class));
+                    finish();
                 } else {
-                    Toast.makeText(LoginActivity.this, R.string.error_login, Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, R.string.error_login_invalid_credentials, Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                t.printStackTrace();
+                Toast.makeText(LoginActivity.this, R.string.error_login_network, Toast.LENGTH_LONG).show();
             }
         });
     }

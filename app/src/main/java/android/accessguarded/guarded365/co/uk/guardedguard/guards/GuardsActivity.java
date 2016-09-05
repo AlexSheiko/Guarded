@@ -7,6 +7,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 public class GuardsActivity extends AppCompatActivity {
 
@@ -18,12 +21,40 @@ public class GuardsActivity extends AppCompatActivity {
         // Make sure that user is logged in
         if (!isLoggedIn()) {
             startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
         }
+
+        // TODO: Display a list of guards
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.guards, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_logout) {
+            logout();
+            return true;
+        }
+        return false;
     }
 
     public boolean isLoggedIn() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         int userId = prefs.getInt("userId", 0);
         return userId != 0;
+    }
+
+    private void logout() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs.edit().clear().apply();
+
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
     }
 }
