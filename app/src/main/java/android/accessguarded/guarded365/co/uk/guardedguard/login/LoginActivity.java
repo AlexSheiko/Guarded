@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -19,6 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private ProgressBar mProgressBar;
     private EditText mUsernameField;
     private EditText mPasswordField;
 
@@ -27,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mUsernameField = (EditText) findViewById(R.id.usernameField);
         mPasswordField = (EditText) findViewById(R.id.passwordField);
         mPasswordField.requestFocus(); // TODO: Remove before production
@@ -54,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(String username, String password) {
+        mProgressBar.setVisibility(View.VISIBLE);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.guarded365.co.uk/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -74,12 +79,14 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 } else {
                     Toast.makeText(LoginActivity.this, R.string.error_login_invalid_credentials, Toast.LENGTH_LONG).show();
+                    mProgressBar.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, R.string.error_login_network, Toast.LENGTH_LONG).show();
+                mProgressBar.setVisibility(View.GONE);
             }
         });
     }

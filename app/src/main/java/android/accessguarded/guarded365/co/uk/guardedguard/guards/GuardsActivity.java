@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class GuardsActivity extends AppCompatActivity {
 
@@ -23,6 +24,12 @@ public class GuardsActivity extends AppCompatActivity {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
             return;
+        } else {
+            // TODO: Remove the whole block before production
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            int userId = prefs.getInt("userId", 0);
+            TextView textView = (TextView) findViewById(R.id.textView);
+            textView.setText(String.format("Successfully logged in, your id is %s", userId));
         }
 
         // TODO: Display a list of guards

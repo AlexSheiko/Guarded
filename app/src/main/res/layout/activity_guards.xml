@@ -12,6 +12,7 @@
     tools:context="android.accessguarded.guarded365.co.uk.guardedguard.guards.GuardsActivity">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"/>
