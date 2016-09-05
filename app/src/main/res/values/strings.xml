@@ -3,4 +3,7 @@
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
     <string name="button_login">Login</string>
+    <string name="error_login">Invalid account details</string>
+    <string name="error_empty_username">Enter your username</string>
+    <string name="error_empty_password">Enter your password</string>
 </resources>

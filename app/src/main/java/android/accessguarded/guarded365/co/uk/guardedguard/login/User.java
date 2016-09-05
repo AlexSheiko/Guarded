@@ -15,7 +15,7 @@ public class User {
         return Username;
     }
 
-    public int getUserId() {
+    public int getId() {
         return UserId;
     }
 }
