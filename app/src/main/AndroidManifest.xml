@@ -20,7 +20,8 @@
         </activity>
         <activity
             android:name=".login.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize">
         </activity>
         <activity android:name=".guarddetail.GuardDetailActivity">
         </activity>
