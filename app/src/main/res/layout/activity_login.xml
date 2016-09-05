@@ -26,9 +26,14 @@
         <EditText
             android:id="@+id/usernameField"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/control_height"
+            android:layout_height="@dimen/input_field_height"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/input_field_background"
             android:hint="@string/hint_username"
             android:inputType="textPersonName|textCapWords"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="api_test"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -40,10 +45,15 @@
         <EditText
             android:id="@+id/passwordField"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/control_height"
+            android:layout_height="@dimen/input_field_height"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/input_field_background"
             android:fontFamily="sans-serif"
             android:hint="@string/hint_password"
             android:inputType="textPassword"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="api_test_password"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -52,7 +62,7 @@
         android:id="@+id/loginButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/control_height"
+        android:layout_height="@dimen/button_height"
         android:layout_marginTop="16dp"
         android:text="@string/button_login"/>
 
