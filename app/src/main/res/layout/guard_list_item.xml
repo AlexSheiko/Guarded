@@ -3,13 +3,26 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:clickable="true"
+              android:focusable="true"
+              android:foreground="?selectableItemBackground"
+              android:gravity="center"
               android:orientation="vertical"
               android:padding="16dp">
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/guard_photo_background"
+        android:gravity="center"
+        android:text="J P"
+        android:textSize="30sp"/>
 
     <TextView
         android:id="@+id/nameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         tools:text="Derek Smitherton"/>
 
 </LinearLayout>
