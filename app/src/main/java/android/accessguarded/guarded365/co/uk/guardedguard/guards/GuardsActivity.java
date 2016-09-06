@@ -3,17 +3,24 @@ package android.accessguarded.guarded365.co.uk.guardedguard.guards;
 import android.accessguarded.guarded365.co.uk.guardedguard.R;
 import android.accessguarded.guarded365.co.uk.guardedguard.login.LoginActivity;
 import android.accessguarded.guarded365.co.uk.guardedguard.review.ReviewService;
+import android.accessguarded.guarded365.co.uk.guardedguard.util.Site;
+import android.accessguarded.guarded365.co.uk.guardedguard.util.Sites;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -80,19 +87,24 @@ public class GuardsActivity extends AppCompatActivity {
                 .build();
 
         ReviewService service = retrofit.create(ReviewService.class);
-        /*
-        call.enqueue(new Callback<List<Guard>>() {
+        Call<Sites> call = service.listGuards(getUserId());
+        call.enqueue(new Callback<Sites>() {
             @Override
-            public void onResponse(Call<List<Guard>> call, Response<List<Guard>> response) {
-                List<Guard> guards = response.body();
+            public void onResponse(Call<Sites> call, Response<Sites> response) {
+                Sites sites = response.body();
+                for (Site site : sites.getList()) {
+                    for (Guard guard : site.getGuards()) {
+                        Log.d(GuardsActivity.class.getSimpleName(), "onResponse: " + guard.getFirstName());
+                    }
+                }
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
-            public void onFailure(Call<List<Guard>> call, Throwable t) {
+            public void onFailure(Call<Sites> call, Throwable t) {
                 Toast.makeText(GuardsActivity.this, R.string.error_guards_network, Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
             }
         });
-        */
     }
 }
