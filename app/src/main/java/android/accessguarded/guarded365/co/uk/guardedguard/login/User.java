@@ -5,8 +5,8 @@ package android.accessguarded.guarded365.co.uk.guardedguard.login;
  */
 public class User {
 
-    public String Username;
-    public int UserId;
+    private String Username;
+    private int UserId;
 
     public User() {
     }

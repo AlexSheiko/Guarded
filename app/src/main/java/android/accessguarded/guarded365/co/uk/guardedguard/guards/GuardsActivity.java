@@ -2,7 +2,6 @@ package android.accessguarded.guarded365.co.uk.guardedguard.guards;
 
 import android.accessguarded.guarded365.co.uk.guardedguard.R;
 import android.accessguarded.guarded365.co.uk.guardedguard.login.LoginActivity;
-import android.accessguarded.guarded365.co.uk.guardedguard.login.User;
 import android.accessguarded.guarded365.co.uk.guardedguard.review.ReviewService;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,10 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
-import retrofit2.Call;
 import retrofit2.Retrofit;
-import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static android.accessguarded.guarded365.co.uk.guardedguard.R.menu.guards;
 
 public class GuardsActivity extends AppCompatActivity {
 
@@ -38,7 +40,7 @@ public class GuardsActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.guards, menu);
+        inflater.inflate(guards, menu);
         return true;
     }
 
@@ -69,12 +71,28 @@ public class GuardsActivity extends AppCompatActivity {
     }
 
     private void displayGuards() {
+        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.guarded365.co.uk/api/")
-                .addConverterFactory(SimpleXmlConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         ReviewService service = retrofit.create(ReviewService.class);
-        Call<User> call = service.listGuards(getUserId());
+        /*
+        call.enqueue(new Callback<List<Guard>>() {
+            @Override
+            public void onResponse(Call<List<Guard>> call, Response<List<Guard>> response) {
+                List<Guard> guards = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<List<Guard>> call, Throwable t) {
+                Toast.makeText(GuardsActivity.this, R.string.error_guards_network, Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+        */
     }
 }

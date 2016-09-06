@@ -7,5 +7,6 @@
     <string name="error_empty_password">Enter your password</string>
     <string name="error_login_invalid_credentials">Invalid account details</string>
     <string name="error_login_network">Failed to log in, check your network connection</string>
+    <string name="error_guards_network">Failed to retrieve guards, check your network connection</string>
     <string name="action_logout">Log Out</string>
 </resources>
