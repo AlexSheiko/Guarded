@@ -2,6 +2,8 @@ package android.accessguarded.guarded365.co.uk.guardedguard.guards;
 
 import android.accessguarded.guarded365.co.uk.guardedguard.R;
 import android.accessguarded.guarded365.co.uk.guardedguard.login.LoginActivity;
+import android.accessguarded.guarded365.co.uk.guardedguard.login.User;
+import android.accessguarded.guarded365.co.uk.guardedguard.review.ReviewService;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +13,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
+
 public class GuardsActivity extends AppCompatActivity {
 
     @Override
@@ -19,13 +25,13 @@ public class GuardsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_guards);
 
         // Make sure that user is logged in
-        if (!isLoggedIn()) {
+        if (isLoggedIn()) {
+            // Load feed
+            displayGuards();
+        } else {
+            // Log in
             startActivity(new Intent(this, LoginActivity.class));
             finish();
-            return;
-        } else {
-            // TODO: Display a list of guards
-
         }
     }
 
@@ -46,9 +52,7 @@ public class GuardsActivity extends AppCompatActivity {
     }
 
     public boolean isLoggedIn() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        int userId = prefs.getInt("userId", 0);
-        return userId != 0;
+        return getUserId() != 0;
     }
 
     private void logout() {
@@ -57,5 +61,20 @@ public class GuardsActivity extends AppCompatActivity {
 
         startActivity(new Intent(this, LoginActivity.class));
         finish();
+    }
+
+    private int getUserId() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        return prefs.getInt("userId", 0);
+    }
+
+    private void displayGuards() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.guarded365.co.uk/api/")
+                .addConverterFactory(SimpleXmlConverterFactory.create())
+                .build();
+
+        ReviewService service = retrofit.create(ReviewService.class);
+        Call<User> call = service.listGuards(getUserId());
     }
 }
