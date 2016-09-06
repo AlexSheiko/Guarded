@@ -35,7 +35,6 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.mNameTextView.setText(mDataset.get(position).getFirstName());
-
     }
 
     // Return the size of your dataset (invoked by the layout manager)
