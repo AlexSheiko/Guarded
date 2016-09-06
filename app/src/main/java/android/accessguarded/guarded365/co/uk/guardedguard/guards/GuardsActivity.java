@@ -10,13 +10,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -28,6 +28,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static android.accessguarded.guarded365.co.uk.guardedguard.R.menu.guards;
 
 public class GuardsActivity extends AppCompatActivity {
+
+    private GuardsAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +81,27 @@ public class GuardsActivity extends AppCompatActivity {
     }
 
     private void displayGuards() {
+        prepareRecyclerView();
+        loadGuards();
+    }
+
+    private void prepareRecyclerView() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // specify an adapter (see also next example)
+        mAdapter = new GuardsAdapter();
+        recyclerView.setAdapter(mAdapter);
+    }
+
+    private void loadGuards() {
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
@@ -95,11 +118,9 @@ public class GuardsActivity extends AppCompatActivity {
                 Sites sites = response.body();
                 for (Site site : sites.getList()) {
                     for (Guard guard : site.getGuards()) {
-                        Log.d(GuardsActivity.class.getSimpleName(), "onResponse: " + guard.getFirstName());
+                        mAdapter.add(guard);
                     }
                 }
-                ((TextView) findViewById(R.id.textView)).setText(
-                        sites.getList().get(0).getGuards().size() + " guards retrieved");
                 progressBar.setVisibility(View.GONE);
             }
 
