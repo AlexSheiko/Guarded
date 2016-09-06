@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -97,6 +98,8 @@ public class GuardsActivity extends AppCompatActivity {
                         Log.d(GuardsActivity.class.getSimpleName(), "onResponse: " + guard.getFirstName());
                     }
                 }
+                ((TextView) findViewById(R.id.textView)).setText(
+                        sites.getList().get(0).getGuards().size() + " guards retrieved");
                 progressBar.setVisibility(View.GONE);
             }
 
