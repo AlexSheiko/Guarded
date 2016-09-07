@@ -31,6 +31,10 @@ public class Guard {
     }
 
     public String getInitials() {
-        return FirstName.substring(0, 1) + " " + LastName.substring(0, 1);
+        String initials = FirstName.substring(0, 1);
+        if (LastName != null && !LastName.isEmpty()) {
+            initials += " " + LastName.substring(0, 1);
+        }
+        return initials;
     }
 }
