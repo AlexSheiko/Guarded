@@ -26,6 +26,8 @@ public class Guard {
     public String getLastName() {
         if (LastName == null) {
             return "";
+        } else if (LastName.length() > 8) {
+            return "\n" + LastName;
         }
         return LastName;
     }
