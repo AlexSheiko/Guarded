@@ -50,9 +50,7 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
         final LineItem item = mDataset.get(position);
         holder.mNameTextView.setText(item.guard.getFirstName());
 
-        final View itemView = holder.itemView;
-        if (item.isHeader) {
-        } else {
+        if (!item.isHeader) {
             // TODO: Display avatar and tasks
         }
     }
