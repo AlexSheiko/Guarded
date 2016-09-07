@@ -5,6 +5,7 @@ public class Guard {
     private String FirstName;
     private String LastName;
     private int TaskCount;
+    private String ProfilePicUrl;
 
     // Required empty constructor for deserialization
     @SuppressWarnings("unused")
@@ -43,5 +44,9 @@ public class Guard {
 
     public int getTaskCount() {
         return TaskCount;
+    }
+
+    public String getPhotoUrl() {
+        return ProfilePicUrl;
     }
 }

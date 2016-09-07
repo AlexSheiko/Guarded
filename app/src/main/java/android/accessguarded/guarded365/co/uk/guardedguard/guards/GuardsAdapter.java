@@ -2,12 +2,19 @@ package android.accessguarded.guarded365.co.uk.guardedguard.guards;
 
 import android.accessguarded.guarded365.co.uk.guardedguard.R;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +56,7 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         final LineItem item = mDataset.get(position);
@@ -58,10 +65,19 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
 
         if (!item.isHeader) {
             // Display avatar and tasks
-            holder.mInitialsTextView.setText(guard.getInitials());
             holder.mTasksTextView.setText(
                     String.format(mContext.getResources().getQuantityString(
                             R.plurals.tasks_count_label, guard.getTaskCount()), guard.getTaskCount()));
+            holder.mInitialsTextView.setText(guard.getInitials());
+            Glide.with(mContext).load(guard.getPhotoUrl()).asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.mPhotoImageView) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(mContext.getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    holder.mPhotoImageView.setImageDrawable(circularBitmapDrawable);
+                }
+            });
         }
     }
 
@@ -91,14 +107,16 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
     static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         TextView mNameTextView;
-        TextView mInitialsTextView;
         TextView mTasksTextView;
+        TextView mInitialsTextView;
+        ImageView mPhotoImageView;
 
         ViewHolder(View v) {
             super(v);
             mNameTextView = (TextView) v.findViewById(R.id.nameTextView);
             mInitialsTextView = (TextView) v.findViewById(R.id.initialsTextView);
             mTasksTextView = (TextView) v.findViewById(R.id.tasksTextView);
+            mPhotoImageView = (ImageView) v.findViewById(R.id.photoImageView);
         }
     }
 

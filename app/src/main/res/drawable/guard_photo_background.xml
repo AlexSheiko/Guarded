@@ -12,7 +12,7 @@
     <!-- white box -->
     <item android:top="1dp">
         <shape android:shape="oval">
-            <solid android:color="#6ec6ac"/>
+            <solid android:color="#CCCCCC"/>
         </shape>
     </item>
 
