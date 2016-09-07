@@ -18,9 +18,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -111,8 +113,9 @@ public class GuardsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new GuardsAdapter();
+        mAdapter = new GuardsAdapter(this);
         recyclerView.setAdapter(mAdapter);
+        recyclerView.setItemAnimator(new SlideInUpAnimator(new OvershootInterpolator(1f)));
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override

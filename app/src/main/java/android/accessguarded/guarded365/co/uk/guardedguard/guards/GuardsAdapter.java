@@ -1,11 +1,13 @@
 package android.accessguarded.guarded365.co.uk.guardedguard.guards;
 
 import android.accessguarded.guarded365.co.uk.guardedguard.R;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +15,13 @@ import java.util.List;
 class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
     private static final int VIEW_TYPE_HEADER = 0x01;
     private static final int VIEW_TYPE_CONTENT = 0x00;
+    private final Context mContext;
     private List<LineItem> mDataset;
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    GuardsAdapter() {
+    GuardsAdapter(Context context) {
         mDataset = new ArrayList<>();
+        mContext = context;
     }
 
     // Create new views (invoked by the layout manager)
@@ -36,6 +40,7 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     // TODO: Open guard details
+                    Toast.makeText(mContext, "Coming soon", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -54,6 +59,9 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
         if (!item.isHeader) {
             // Display avatar and tasks
             holder.mInitialsTextView.setText(guard.getInitials());
+            holder.mTasksTextView.setText(
+                    String.format(mContext.getResources().getQuantityString(
+                            R.plurals.tasks_count_label, guard.getTaskCount()), guard.getTaskCount()));
         }
     }
 
@@ -70,7 +78,7 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
 
     public void add(LineItem lineItem) {
         mDataset.add(lineItem);
-        notifyDataSetChanged();
+        notifyItemInserted(mDataset.size());
     }
 
     public LineItem getItem(int position) {
@@ -84,11 +92,13 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
         // each data item is just a string in this case
         TextView mNameTextView;
         TextView mInitialsTextView;
+        TextView mTasksTextView;
 
         ViewHolder(View v) {
             super(v);
             mNameTextView = (TextView) v.findViewById(R.id.nameTextView);
             mInitialsTextView = (TextView) v.findViewById(R.id.initialsTextView);
+            mTasksTextView = (TextView) v.findViewById(R.id.tasksTextView);
         }
     }
 

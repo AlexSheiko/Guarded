@@ -4,6 +4,7 @@ public class Guard {
 
     private String FirstName;
     private String LastName;
+    private int TaskCount;
 
     // Required empty constructor for deserialization
     @SuppressWarnings("unused")
@@ -38,5 +39,9 @@ public class Guard {
             initials += " " + LastName.substring(0, 1);
         }
         return initials;
+    }
+
+    public int getTaskCount() {
+        return TaskCount;
     }
 }

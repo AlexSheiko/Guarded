@@ -9,4 +9,8 @@
     <string name="error_login_network">Failed to log in, check your network connection</string>
     <string name="error_guards_network">Failed to retrieve guards, check your network connection</string>
     <string name="action_logout">Log Out</string>
+    <plurals name="tasks_count_label">
+        <item quantity="one">%d task</item>
+        <item quantity="other">%d tasks</item>
+    </plurals>
 </resources>
