@@ -7,11 +7,13 @@ import android.accessguarded.guarded365.co.uk.guardedguard.util.Site;
 import android.accessguarded.guarded365.co.uk.guardedguard.util.Sites;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -36,6 +38,7 @@ public class GuardsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guards);
+        removeActionBarShadow();
 
         // Make sure that user is logged in
         if (isLoggedIn()) {
@@ -110,6 +113,28 @@ public class GuardsActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         mAdapter = new GuardsAdapter();
         recyclerView.setAdapter(mAdapter);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (!recyclerView.canScrollVertically(-1)) {
+                    removeActionBarShadow();
+                } else {
+                    displayActionBarShadow();
+                }
+            }
+        });
+    }
+
+    private void removeActionBarShadow() {
+        getSupportActionBar().setElevation(0);
+    }
+
+    private void displayActionBarShadow() {
+        Resources resources = this.getResources();
+        float elevation = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, resources.getDisplayMetrics());
+        getSupportActionBar().setElevation(elevation);
     }
 
     private void loadGuards() {
@@ -135,6 +160,7 @@ public class GuardsActivity extends AppCompatActivity {
                         mAdapter.add(new LineItem(guard, false, 0, 0));
                     }
                 }
+                // TODO: Remove after preview
                 mAdapter.add(new LineItem(new Guard("Second section"), true, 0, 0));
                 mAdapter.add(new LineItem(new Guard("Derek", "Smitherton"), false, 0, 0));
                 mAdapter.add(new LineItem(new Guard("Nathaniel", "Specrakovich"), false, 0, 0));

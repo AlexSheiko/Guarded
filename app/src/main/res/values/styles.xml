@@ -7,10 +7,6 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/colorPrimary</item>
         <item name="android:colorEdgeEffect">@color/colorEdgeEffect</item>
-
-        <!--ActionBar without shadow-->
-        <item name="actionBarStyle">@style/ActionBarNoShadow</item>
-        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <!--Login screen theme-->
@@ -28,10 +24,6 @@
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
         <item name="android:textSize">20sp</item>
-    </style>
-
-    <style name="ActionBarNoShadow" parent="Widget.AppCompat.Light.ActionBar">
-        <item name="elevation">0dp</item>
     </style>
 
 </resources>
