@@ -5,10 +5,11 @@
     android:id="@+id/nameTextView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="start"
+    android:layout_marginBottom="-16dp"
+    android:fontFamily="sans-serif-medium"
     android:layoutDirection="locale"
     android:padding="16dip"
     android:textDirection="locale"
-    android:textSize="24sp"
+    android:textSize="14sp"
     tools:text="Header Item"
     />
