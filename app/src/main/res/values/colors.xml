@@ -3,4 +3,5 @@
     <color name="colorPrimary">#DDDDDD</color>
     <color name="colorPrimaryDark">#B0B0B0</color>
     <color name="colorAccent">#1A936F</color>
+    <color name="colorEdgeEffect">#838383</color>
 </resources>

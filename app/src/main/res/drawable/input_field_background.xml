@@ -11,7 +11,7 @@
     </item>
 
     <!-- white box -->
-    <item android:top="3px">
+    <item android:top="1dp">
         <shape>
             <solid android:color="#FEFEFE"/>
             <corners android:radius="2dp"/>
