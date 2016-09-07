@@ -26,6 +26,12 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.guard_list_item, parent, false);
         ViewHolder vh = new ViewHolder(v);
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: Open guard details
+            }
+        });
         return vh;
     }
 

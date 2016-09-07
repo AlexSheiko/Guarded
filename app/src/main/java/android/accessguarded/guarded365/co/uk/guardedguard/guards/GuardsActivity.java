@@ -116,10 +116,6 @@ public class GuardsActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Sites> call, Response<Sites> response) {
                 Sites sites = response.body();
-                mAdapter.add(new Guard("Robert"));
-                mAdapter.add(new Guard("Bill"));
-                mAdapter.add(new Guard("Tony"));
-                mAdapter.add(new Guard("Tracey"));
                 for (Site site : sites.getList()) {
                     for (Guard guard : site.getGuards()) {
                         mAdapter.add(guard);
