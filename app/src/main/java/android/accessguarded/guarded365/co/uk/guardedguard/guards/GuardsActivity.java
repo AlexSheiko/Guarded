@@ -135,6 +135,18 @@ public class GuardsActivity extends AppCompatActivity {
                         mAdapter.add(new LineItem(guard, false, 0, 0));
                     }
                 }
+                mAdapter.add(new LineItem(new Guard("Test section 2"), true, 0, 0));
+                mAdapter.add(new LineItem(new Guard("Guard", "1"), false, 0, 0));
+                mAdapter.add(new LineItem(new Guard("Guard", "2"), false, 0, 0));
+                mAdapter.add(new LineItem(new Guard("Guard", "3"), false, 0, 0));
+                mAdapter.add(new LineItem(new Guard("Guard", "4"), false, 0, 0));
+                mAdapter.add(new LineItem(new Guard("Test section 3"), true, 0, 0));
+                mAdapter.add(new LineItem(new Guard("Guard", "1"), false, 0, 0));
+                mAdapter.add(new LineItem(new Guard("Guard", "2"), false, 0, 0));
+                mAdapter.add(new LineItem(new Guard("Test section 4"), true, 0, 0));
+                mAdapter.add(new LineItem(new Guard("Guard", "1"), false, 0, 0));
+                mAdapter.add(new LineItem(new Guard("Test section 5"), true, 0, 0));
+                mAdapter.add(new LineItem(new Guard("Guard", "1"), false, 0, 0));
                 progressBar.setVisibility(View.GONE);
             }
 

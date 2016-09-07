@@ -48,10 +48,12 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         final LineItem item = mDataset.get(position);
-        holder.mNameTextView.setText(item.guard.getFirstName());
+        Guard guard = item.guard;
+        holder.mNameTextView.setText(guard.getFirstName() + " " + guard.getLastName());
 
         if (!item.isHeader) {
-            // TODO: Display avatar and tasks
+            // Display avatar and tasks
+            holder.mInitialsTextView.setText(guard.getInitials());
         }
     }
 
@@ -81,10 +83,12 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
     static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         TextView mNameTextView;
+        TextView mInitialsTextView;
 
         ViewHolder(View v) {
             super(v);
             mNameTextView = (TextView) v.findViewById(R.id.nameTextView);
+            mInitialsTextView = (TextView) v.findViewById(R.id.initialsTextView);
         }
     }
 

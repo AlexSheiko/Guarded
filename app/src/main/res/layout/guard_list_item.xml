@@ -11,11 +11,14 @@
               android:padding="16dp">
 
     <TextView
+        android:id="@+id/initialsTextView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/guard_photo_background"
+        android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:text="J P"
+        android:textColor="#34503800"
         android:textSize="30sp"/>
 
     <TextView
