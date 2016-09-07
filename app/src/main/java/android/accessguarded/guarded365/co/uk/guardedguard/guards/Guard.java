@@ -7,6 +7,10 @@ public class Guard {
     public Guard() {
     }
 
+    public Guard(String name) {
+        FirstName = name;
+    }
+
     public String getFirstName() {
         return FirstName;
     }

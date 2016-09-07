@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
-    private List<Guard> mDataset;
+    private static final int VIEW_TYPE_HEADER = 0x01;
+    private static final int VIEW_TYPE_CONTENT = 0x00;
+    private List<LineItem> mDataset;
 
     // Provide a suitable constructor (depends on the kind of dataset)
     GuardsAdapter() {
@@ -23,16 +25,21 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
     public GuardsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                        int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.guard_list_item, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        vh.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: Open guard details
-            }
-        });
-        return vh;
+        View view;
+        if (viewType == VIEW_TYPE_HEADER) {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.header_item, parent, false);
+        } else {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.guard_list_item, parent, false);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // TODO: Open guard details
+                }
+            });
+        }
+        return new ViewHolder(view);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -40,7 +47,19 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.mNameTextView.setText(mDataset.get(position).getFirstName());
+        final LineItem item = mDataset.get(position);
+        holder.mNameTextView.setText(item.guard.getFirstName());
+
+        final View itemView = holder.itemView;
+        if (item.isHeader) {
+        } else {
+            // TODO: Display avatar and tasks
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return mDataset.get(position).isHeader ? VIEW_TYPE_HEADER : VIEW_TYPE_CONTENT;
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -49,9 +68,13 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
         return mDataset.size();
     }
 
-    public void add(Guard guard) {
-        mDataset.add(guard);
+    public void add(LineItem lineItem) {
+        mDataset.add(lineItem);
         notifyDataSetChanged();
+    }
+
+    public LineItem getItem(int position) {
+        return mDataset.get(position);
     }
 
     // Provide a reference to the views for each data item
@@ -64,6 +87,25 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
         ViewHolder(View v) {
             super(v);
             mNameTextView = (TextView) v.findViewById(R.id.nameTextView);
+        }
+    }
+
+    public static class LineItem {
+
+        public int sectionManager;
+
+        public int sectionFirstPosition;
+
+        public boolean isHeader;
+
+        public Guard guard;
+
+        public LineItem(Guard guard, boolean isHeader, int sectionManager,
+                        int sectionFirstPosition) {
+            this.isHeader = isHeader;
+            this.guard = guard;
+            this.sectionManager = sectionManager;
+            this.sectionFirstPosition = sectionFirstPosition;
         }
     }
 }

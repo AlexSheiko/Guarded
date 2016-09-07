@@ -26,6 +26,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.accessguarded.guarded365.co.uk.guardedguard.R.menu.guards;
+import static android.accessguarded.guarded365.co.uk.guardedguard.guards.GuardsAdapter.LineItem;
 
 public class GuardsActivity extends AppCompatActivity {
 
@@ -94,6 +95,16 @@ public class GuardsActivity extends AppCompatActivity {
 
         // use a linear layout manager
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if (mAdapter.getItem(position).isHeader) {
+                    return 3;
+                } else {
+                    return 1;
+                }
+            }
+        });
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
@@ -117,8 +128,11 @@ public class GuardsActivity extends AppCompatActivity {
             public void onResponse(Call<Sites> call, Response<Sites> response) {
                 Sites sites = response.body();
                 for (Site site : sites.getList()) {
+                    // Add list headers
+                    mAdapter.add(new LineItem(new Guard(site.getName()), true, 0, 0));
+                    // Add guards for each header
                     for (Guard guard : site.getGuards()) {
-                        mAdapter.add(guard);
+                        mAdapter.add(new LineItem(guard, false, 0, 0));
                     }
                 }
                 progressBar.setVisibility(View.GONE);
