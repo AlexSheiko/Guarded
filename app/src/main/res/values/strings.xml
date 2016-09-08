@@ -14,4 +14,8 @@
         <item quantity="one">%d task</item>
         <item quantity="other">%d tasks</item>
     </plurals>
+    <plurals name="incidents_count_label">
+        <item quantity="one">%d incident</item>
+        <item quantity="other">%d incidents</item>
+    </plurals>
 </resources>

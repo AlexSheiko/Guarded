@@ -38,15 +38,19 @@ public class ReviewActivity extends AppCompatActivity {
 
     private void populateDetails(Guard guard) {
         // Init views
-        final TextView initialsTextView = (TextView) findViewById(R.id.initialsTextView);
-        final ImageView photoImageView = (ImageView) findViewById(R.id.photoImageView);
         final TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
+        final TextView initialsTextView = (TextView) findViewById(R.id.initialsTextView);
+        final TextView siteTextView = (TextView) findViewById(R.id.siteTextView);
         final TextView tasksTextView = (TextView) findViewById(R.id.tasksTextView);
+        final TextView incidentsTextView = (TextView) findViewById(R.id.incidentsTextView);
+        final ImageView photoImageView = (ImageView) findViewById(R.id.photoImageView);
 
         // Display data
+        nameTextView.setText(guard.getFullName().replaceAll("\n", ""));
         initialsTextView.setText(guard.getInitials());
-        nameTextView.setText(guard.getFullName());
+        siteTextView.setText(guard.getSiteName());
         tasksTextView.setText(guard.getTaskCount(this));
+        incidentsTextView.setText(guard.getIncidentCount(this));
         Glide.with(this).load(guard.getPhotoUrl()).asBitmap().centerCrop().into(new BitmapImageViewTarget(photoImageView) {
             @Override
             protected void setResource(Bitmap resource) {

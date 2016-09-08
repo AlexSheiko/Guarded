@@ -12,10 +12,10 @@ public class Guard implements Serializable {
 
     private String FirstName;
     private String LastName;
-    @SuppressWarnings("all")
-    private int TaskCount;
-    @SuppressWarnings("all")
     private String ProfilePicUrl;
+    private String SiteName;
+    private int TaskCount;
+    private int IncidentCount;
 
     // Required empty constructor for deserialization
     @SuppressWarnings("unused")
@@ -56,12 +56,30 @@ public class Guard implements Serializable {
         return initials;
     }
 
+    public String getPhotoUrl() {
+        return ProfilePicUrl;
+    }
+
+    public String getSiteName() {
+        if (SiteName == null) {
+            return "Site not specified";
+        }
+        return SiteName;
+    }
+
     public String getTaskCount(Context context) {
+        if (TaskCount == 0) {
+            return "No tasks";
+        }
         return String.format(context.getResources().getQuantityString(
                 R.plurals.tasks_count_label, TaskCount), TaskCount);
     }
 
-    public String getPhotoUrl() {
-        return ProfilePicUrl;
+    public String getIncidentCount(Context context) {
+        if (IncidentCount == 0) {
+            return "No incidents";
+        }
+        return String.format(context.getResources().getQuantityString(
+                R.plurals.incidents_count_label, IncidentCount), IncidentCount);
     }
 }

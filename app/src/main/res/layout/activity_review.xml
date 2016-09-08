@@ -1,88 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_guard_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:fillViewport="true"
     tools:context="android.accessguarded.guarded365.co.uk.guardedguard.guardreview.ReviewActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
-
-        <TextView
-            android:id="@+id/initialsTextView"
-            android:layout_width="97dp"
-            android:layout_height="97dp"
-            android:background="@drawable/guard_photo_background"
-            android:clickable="false"
-            android:focusable="false"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"
-            android:padding="0dp"
-            android:text="J P"
-            android:textColor="@color/colorAccent"
-            android:textSize="30sp"
-            android:transitionName="initials"/>
-
-        <ImageView
-            android:id="@+id/photoImageView"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-            android:layout_marginLeft="1dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="1dp"
-            android:transitionName="photo"/>
-
-        <TextView
-            android:id="@+id/nameTextView"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_toRightOf="@+id/photoImageView"
-            android:paddingLeft="4dp"
-            android:transitionName="name"
-            tools:text="Derek Smitherton"/>
-
-        <TextView
-            android:id="@+id/tasksTextView"
-            style="@style/TextAppearance.AppCompat.Caption"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/nameTextView"
-            android:layout_toRightOf="@+id/photoImageView"
-            android:paddingLeft="4dp"
-            android:transitionName="tasks"
-            tools:text="2 tasks"/>
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="32dp"
-        android:background="#12000000"/>
-
     <LinearLayout
+        android:id="@+id/activity_guard_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#f2f5f2">
+        android:orientation="vertical"
+        android:paddingTop="@dimen/activity_vertical_margin">
 
-        <RatingBar
-            android:id="@+id/ratingBar"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:numStars="5"
-            android:rating="3"
-            android:stepSize="1"/>
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:id="@+id/initialsTextView"
+                android:layout_width="97dp"
+                android:layout_height="97dp"
+                android:background="@drawable/guard_photo_background"
+                android:clickable="false"
+                android:focusable="false"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="J P"
+                android:textColor="@color/colorAccent"
+                android:textSize="30sp"
+                android:transitionName="initials"/>
+
+            <ImageView
+                android:id="@+id/photoImageView"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="1dp"
+                android:transitionName="photo"/>
+
+            <TextView
+                android:id="@+id/nameTextView"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/photoImageView"
+                android:paddingLeft="4dp"
+                android:transitionName="name"
+                tools:text="Derek Smitherton"/>
+
+            <TextView
+                android:id="@+id/siteTextView"
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nameTextView"
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@+id/photoImageView"
+                android:paddingLeft="4dp"
+                tools:text="Morrisons Croydon (Retail)"/>
+
+            <TextView
+                android:id="@+id/incidentsTextView"
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/siteTextView"
+                android:layout_toRightOf="@+id/photoImageView"
+                android:paddingLeft="4dp"
+                tools:text="1 incident"/>
+
+            <TextView
+                android:id="@+id/tasksTextView"
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/incidentsTextView"
+                android:layout_toRightOf="@+id/photoImageView"
+                android:paddingLeft="4dp"
+                android:transitionName="tasks"
+                tools:text="2 tasks"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="32dp"
+            android:background="#05000000"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f2f5f2"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.7"
+                android:text="Uniform"/>
+
+            <RatingBar
+                android:id="@+id/uniformRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="3"
+                android:stepSize="1"/>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:alpha="0.7"
+                android:text="Attendance"/>
+
+            <RatingBar
+                android:id="@+id/attendanceRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="3"
+                android:stepSize="1"/>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:alpha="0.7"
+                android:text="Attitude"/>
+
+            <RatingBar
+                android:id="@+id/attitudeRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="3"
+                android:stepSize="1"/>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:alpha="0.7"
+                android:text="Incident rating"/>
+
+            <RatingBar
+                android:id="@+id/incidentRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="3"
+                android:stepSize="1"/>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:alpha="0.7"
+                android:text="Perfomance"/>
+
+            <RatingBar
+                android:id="@+id/perfomanceRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="60dp"
+                android:numStars="5"
+                android:rating="3"
+                android:stepSize="1"/>
+        </LinearLayout>
+
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>
