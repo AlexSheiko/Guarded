@@ -191,7 +191,7 @@
                 android:layout_marginRight="-4dp"
                 android:layout_marginTop="24dp"
                 android:hint="@string/comment_hint"
-                android:inputType="textCapSentences"
+                android:inputType="textMultiLine|textCapSentences"
                 android:paddingBottom="16dp"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
