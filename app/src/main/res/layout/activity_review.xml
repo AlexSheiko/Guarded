@@ -197,7 +197,7 @@
                 android:paddingRight="12dp"
                 android:paddingTop="16dp"/>
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="100dp"
@@ -220,10 +220,10 @@
                     style="?android:attr/progressBarStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="center"
                     android:visibility="gone"
                     tools:visibility="visible"/>
-            </LinearLayout>
+            </FrameLayout>
 
         </LinearLayout>
 

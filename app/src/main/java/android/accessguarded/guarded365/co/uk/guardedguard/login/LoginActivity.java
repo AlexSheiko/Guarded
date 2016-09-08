@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login(String username, String password) {
         mProgressBar.setVisibility(View.VISIBLE);
+        findViewById(R.id.loginButton).setEnabled(false);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.guarded365.co.uk/")
@@ -80,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(LoginActivity.this, R.string.error_login_invalid_credentials, Toast.LENGTH_LONG).show();
                     mProgressBar.setVisibility(View.GONE);
+                    findViewById(R.id.loginButton).setEnabled(true);
                 }
             }
 
@@ -87,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, R.string.error_login_network, Toast.LENGTH_LONG).show();
                 mProgressBar.setVisibility(View.GONE);
+                findViewById(R.id.loginButton).setEnabled(true);
             }
         });
     }
