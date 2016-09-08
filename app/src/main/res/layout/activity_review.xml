@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_guard_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="android.accessguarded.guarded365.co.uk.guardedguard.guardreview.ReviewActivity">
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/initialsTextView"
+        android:layout_width="97dp"
+        android:layout_height="97dp"
+        android:background="@drawable/guard_photo_background"
+        android:clickable="false"
+        android:focusable="false"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:padding="0dp"
+        android:text="J P"
+        android:textColor="@color/colorAccent"
+        android:textSize="30sp"
+        android:transitionName="initials"/>
+
+    <ImageView
+        android:id="@+id/photoImageView"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="-96dp"
+        android:transitionName="photo"/>
+
+</LinearLayout>

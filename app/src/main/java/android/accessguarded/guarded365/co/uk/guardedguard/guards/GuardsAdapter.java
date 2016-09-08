@@ -1,17 +1,20 @@
 package android.accessguarded.guarded365.co.uk.guardedguard.guards;
 
 import android.accessguarded.guarded365.co.uk.guardedguard.R;
+import android.accessguarded.guarded365.co.uk.guardedguard.guardreview.ReviewActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
@@ -43,13 +46,6 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
         } else {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.guard_list_item, parent, false);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // TODO: Open guard details
-                    Toast.makeText(mContext, "Coming soon", Toast.LENGTH_SHORT).show();
-                }
-            });
         }
         return new ViewHolder(view);
     }
@@ -60,7 +56,7 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         final LineItem item = mDataset.get(position);
-        Guard guard = item.guard;
+        final Guard guard = item.guard;
         holder.mNameTextView.setText(guard.getFirstName() + " " + guard.getLastName());
 
         if (!item.isHeader) {
@@ -76,6 +72,21 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
                             RoundedBitmapDrawableFactory.create(mContext.getResources(), resource);
                     circularBitmapDrawable.setCircular(true);
                     holder.mPhotoImageView.setImageDrawable(circularBitmapDrawable);
+                }
+            });
+
+            // Listen for click events
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Open guard details
+                    Intent intent = new Intent(mContext, ReviewActivity.class);
+                    intent.putExtra("guard", guard);
+                    Pair<View, String> p1 = Pair.create((View) holder.mInitialsTextView, "initials");
+                    Pair<View, String> p2 = Pair.create((View) holder.mPhotoImageView, "photo");
+                    ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation((GuardsActivity) mContext, p1, p2);
+                    mContext.startActivity(intent, options.toBundle());
                 }
             });
         }

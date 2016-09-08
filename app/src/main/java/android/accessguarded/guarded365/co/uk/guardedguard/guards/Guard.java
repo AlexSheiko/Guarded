@@ -1,10 +1,17 @@
 package android.accessguarded.guarded365.co.uk.guardedguard.guards;
 
-public class Guard {
+import java.io.Serializable;
+
+/**
+ * Immutable model class for a Guard.
+ */
+public class Guard implements Serializable {
 
     private String FirstName;
     private String LastName;
+    @SuppressWarnings("all")
     private int TaskCount;
+    @SuppressWarnings("all")
     private String ProfilePicUrl;
 
     // Required empty constructor for deserialization
@@ -12,11 +19,11 @@ public class Guard {
     public Guard() {
     }
 
-    public Guard(String name) {
+    Guard(String name) {
         FirstName = name;
     }
 
-    public Guard(String firstName, String lastName) {
+    Guard(String firstName, String lastName) {
         FirstName = firstName;
         LastName = lastName;
     }

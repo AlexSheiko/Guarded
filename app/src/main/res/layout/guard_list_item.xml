@@ -21,14 +21,16 @@
         android:padding="0dp"
         android:text="J P"
         android:textColor="@color/colorAccent"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:transitionName="initials"/>
 
     <ImageView
         android:id="@+id/photoImageView"
         android:layout_width="95dp"
         android:layout_height="95dp"
         android:layout_marginLeft="1dp"
-        android:layout_marginTop="-96dp"/>
+        android:layout_marginTop="-96dp"
+        android:transitionName="photo"/>
 
     <TextView
         android:id="@+id/nameTextView"

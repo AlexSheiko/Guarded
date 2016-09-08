@@ -7,6 +7,9 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/colorPrimary</item>
         <item name="android:colorEdgeEffect">@color/colorEdgeEffect</item>
+
+        <!--Enable shared element animation-->
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <!--Login screen theme-->
