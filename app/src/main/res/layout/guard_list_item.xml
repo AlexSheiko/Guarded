@@ -25,9 +25,10 @@
 
     <ImageView
         android:id="@+id/photoImageView"
-        android:layout_width="97dp"
-        android:layout_height="97dp"
-        android:layout_marginTop="-97dp"/>
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="-96dp"/>
 
     <TextView
         android:id="@+id/nameTextView"
