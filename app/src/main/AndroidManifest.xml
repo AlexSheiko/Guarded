@@ -23,7 +23,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize">
         </activity>
-        <activity android:name=".guarddetail.GuardDetailActivity">
+        <activity android:name=".guardreview.ReviewActivity">
         </activity>
     </application>
 

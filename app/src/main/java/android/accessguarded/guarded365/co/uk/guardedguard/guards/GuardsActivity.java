@@ -1,8 +1,8 @@
 package android.accessguarded.guarded365.co.uk.guardedguard.guards;
 
 import android.accessguarded.guarded365.co.uk.guardedguard.R;
+import android.accessguarded.guarded365.co.uk.guardedguard.guardreview.ReviewService;
 import android.accessguarded.guarded365.co.uk.guardedguard.login.LoginActivity;
-import android.accessguarded.guarded365.co.uk.guardedguard.review.ReviewService;
 import android.accessguarded.guarded365.co.uk.guardedguard.util.Site;
 import android.accessguarded.guarded365.co.uk.guardedguard.util.Sites;
 import android.content.Intent;

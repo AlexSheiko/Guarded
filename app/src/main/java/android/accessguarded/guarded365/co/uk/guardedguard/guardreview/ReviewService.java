@@ -1,4 +1,4 @@
-package android.accessguarded.guarded365.co.uk.guardedguard.review;
+package android.accessguarded.guarded365.co.uk.guardedguard.guardreview;
 
 import android.accessguarded.guarded365.co.uk.guardedguard.util.Sites;
 
