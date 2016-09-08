@@ -9,6 +9,7 @@
     <string name="error_login_invalid_credentials">Invalid account details</string>
     <string name="error_login_network">Failed to log in, check your network connection</string>
     <string name="error_guards_network">Failed to retrieve guards,\ncheck your network connection</string>
+    <string name="error_review_network">Failed to submit review,\ncheck your network connection</string>
     <string name="action_logout">Log Out</string>
     <string name="title_activity_review">Today</string>
     <string name="comment_hint">Comment</string>

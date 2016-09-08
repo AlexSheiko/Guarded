@@ -32,11 +32,11 @@ public class Guard implements Serializable {
         LastName = lastName;
     }
 
-    public String getFirstName() {
+    private String getFirstName() {
         return FirstName;
     }
 
-    public String getLastName() {
+    private String getLastName() {
         if (LastName == null) {
             return "";
         } else if (LastName.contains(" ")) {

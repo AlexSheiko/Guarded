@@ -9,6 +9,7 @@ public class Review {
     private int guardId;
     private int siteId;
     private int reviewerId;
+    private String comments;
 
     // review points
     private int uniformRating;
@@ -17,10 +18,22 @@ public class Review {
     private int communicationRating;
     private int performanceRating;
 
-    // comment
-    private String comments;
-
     // Required empty constructor for deserialization
     public Review() {
+    }
+
+    public Review(int guardId, int siteId, int reviewerId, int uniformRating, int attendanceRating, int attitudeRating, int communicationRating, int performanceRating) {
+        this.guardId = guardId;
+        this.siteId = siteId;
+        this.reviewerId = reviewerId;
+        this.uniformRating = uniformRating;
+        this.attendanceRating = attendanceRating;
+        this.attitudeRating = attitudeRating;
+        this.communicationRating = communicationRating;
+        this.performanceRating = performanceRating;
+    }
+
+    public void setComment(String comment) {
+        this.comments = comment;
     }
 }

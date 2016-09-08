@@ -197,16 +197,34 @@
                 android:paddingRight="12dp"
                 android:paddingTop="16dp"/>
 
-            <Button
-                style="@style/Widget.AppCompat.Button.Colored"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/button_height"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="100dp"
                 android:layout_marginTop="48dp"
-                android:paddingLeft="40dp"
-                android:paddingRight="40dp"
-                android:text="@string/submit"
-                android:textSize="18sp"/>
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/submitButton"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/button_height"
+                    android:onClick="onClickSubmit"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp"
+                    android:text="@string/submit"
+                    android:textSize="18sp"/>
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

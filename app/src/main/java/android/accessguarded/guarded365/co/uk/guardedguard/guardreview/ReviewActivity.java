@@ -2,6 +2,7 @@ package android.accessguarded.guarded365.co.uk.guardedguard.guardreview;
 
 import android.accessguarded.guarded365.co.uk.guardedguard.R;
 import android.accessguarded.guarded365.co.uk.guardedguard.guards.Guard;
+import android.accessguarded.guarded365.co.uk.guardedguard.util.ReviewResponse;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -10,13 +11,21 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReviewActivity extends AppCompatActivity {
 
@@ -87,5 +96,45 @@ public class ReviewActivity extends AppCompatActivity {
         Resources resources = this.getResources();
         float elevation = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, resources.getDisplayMetrics());
         getSupportActionBar().setElevation(elevation);
+    }
+
+    public void onClickSubmit(View view) {
+        Review review = new Review();
+        submitReview(review);
+    }
+
+    private void submitReview(Review review) {
+        findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
+        findViewById(R.id.submitButton).setEnabled(false);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.guarded365.co.uk/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ReviewService service = retrofit.create(ReviewService.class);
+        Call<ReviewResponse> call = service.submitReview(review);
+        call.enqueue(new Callback<ReviewResponse>() {
+            @Override
+            public void onResponse(Call<ReviewResponse> call, Response<ReviewResponse> response) {
+                ReviewResponse reviewResponse = response.body();
+                if (reviewResponse.isSuccessful()) {
+                    // TODO: Go back to a list of guards
+                    Toast.makeText(ReviewActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Display an error message
+                    Toast.makeText(ReviewActivity.this, reviewResponse.getMessage() + "", Toast.LENGTH_SHORT).show();
+                    findViewById(R.id.submitButton).setEnabled(true);
+                    findViewById(R.id.progressBar).setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ReviewResponse> call, Throwable t) {
+                Toast.makeText(ReviewActivity.this, R.string.error_review_network, Toast.LENGTH_LONG).show();
+                findViewById(R.id.submitButton).setEnabled(true);
+                findViewById(R.id.progressBar).setVisibility(View.GONE);
+            }
+        });
     }
 }
