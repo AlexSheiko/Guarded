@@ -1,5 +1,8 @@
 package android.accessguarded.guarded365.co.uk.guardedguard.guards;
 
+import android.accessguarded.guarded365.co.uk.guardedguard.R;
+import android.content.Context;
+
 import java.io.Serializable;
 
 /**
@@ -41,6 +44,10 @@ public class Guard implements Serializable {
         return LastName;
     }
 
+    public String getFullName() {
+        return getFirstName() + " " + getLastName();
+    }
+
     public String getInitials() {
         String initials = FirstName.substring(0, 1);
         if (LastName != null && !LastName.isEmpty()) {
@@ -49,8 +56,9 @@ public class Guard implements Serializable {
         return initials;
     }
 
-    public int getTaskCount() {
-        return TaskCount;
+    public String getTaskCount(Context context) {
+        return String.format(context.getResources().getQuantityString(
+                R.plurals.tasks_count_label, TaskCount), TaskCount);
     }
 
     public String getPhotoUrl() {

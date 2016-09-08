@@ -23,7 +23,9 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize">
         </activity>
-        <activity android:name=".guardreview.ReviewActivity">
+        <activity
+            android:name=".guardreview.ReviewActivity"
+            android:parentActivityName=".guards.GuardsActivity">
         </activity>
     </application>
 

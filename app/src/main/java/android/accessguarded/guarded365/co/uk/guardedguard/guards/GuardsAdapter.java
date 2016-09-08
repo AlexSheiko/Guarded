@@ -57,13 +57,11 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
         // - replace the contents of the view with that element
         final LineItem item = mDataset.get(position);
         final Guard guard = item.guard;
-        holder.mNameTextView.setText(guard.getFirstName() + " " + guard.getLastName());
+        holder.mNameTextView.setText(guard.getFullName());
 
         if (!item.isHeader) {
             // Display avatar and tasks
-            holder.mTasksTextView.setText(
-                    String.format(mContext.getResources().getQuantityString(
-                            R.plurals.tasks_count_label, guard.getTaskCount()), guard.getTaskCount()));
+            holder.mTasksTextView.setText(guard.getTaskCount(mContext));
             holder.mInitialsTextView.setText(guard.getInitials());
             Glide.with(mContext).load(guard.getPhotoUrl()).asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.mPhotoImageView) {
                 @Override
@@ -84,8 +82,10 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
                     intent.putExtra("guard", guard);
                     Pair<View, String> p1 = Pair.create((View) holder.mInitialsTextView, "initials");
                     Pair<View, String> p2 = Pair.create((View) holder.mPhotoImageView, "photo");
+                    Pair<View, String> p3 = Pair.create((View) holder.mNameTextView, "name");
+                    Pair<View, String> p4 = Pair.create((View) holder.mTasksTextView, "tasks");
                     ActivityOptionsCompat options = ActivityOptionsCompat.
-                            makeSceneTransitionAnimation((GuardsActivity) mContext, p1, p2);
+                            makeSceneTransitionAnimation((GuardsActivity) mContext, p1, p2, p3, p4);
                     mContext.startActivity(intent, options.toBundle());
                 }
             });
