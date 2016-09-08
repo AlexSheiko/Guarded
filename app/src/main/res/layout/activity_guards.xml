@@ -26,4 +26,15 @@
         android:layout_gravity="center"
         android:layout_marginBottom="60dp"
         android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/errorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="60dp"
+        android:gravity="center"
+        android:text="@string/error_guards_network"
+        android:textSize="16sp"
+        android:visibility="gone"/>
 </FrameLayout>

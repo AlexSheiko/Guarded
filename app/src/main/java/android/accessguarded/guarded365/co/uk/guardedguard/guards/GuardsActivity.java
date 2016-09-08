@@ -20,7 +20,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 import retrofit2.Call;
@@ -185,7 +184,7 @@ public class GuardsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Sites> call, Throwable t) {
-                Toast.makeText(GuardsActivity.this, R.string.error_guards_network, Toast.LENGTH_LONG).show();
+                findViewById(R.id.errorTextView).setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
             }
         });
