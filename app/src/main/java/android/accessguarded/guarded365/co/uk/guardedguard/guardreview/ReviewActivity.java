@@ -2,13 +2,17 @@ package android.accessguarded.guarded365.co.uk.guardedguard.guardreview;
 
 import android.accessguarded.guarded365.co.uk.guardedguard.R;
 import android.accessguarded.guarded365.co.uk.guardedguard.guards.Guard;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.MenuItem;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -60,9 +64,27 @@ public class ReviewActivity extends AppCompatActivity {
                 photoImageView.setImageDrawable(circularBitmapDrawable);
             }
         });
+
+        final ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                if (!scrollView.canScrollVertically(-1)) {
+                    removeActionBarShadow();
+                } else {
+                    displayActionBarShadow();
+                }
+            }
+        });
     }
 
     private void removeActionBarShadow() {
         getSupportActionBar().setElevation(0);
+    }
+
+    private void displayActionBarShadow() {
+        Resources resources = this.getResources();
+        float elevation = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, resources.getDisplayMetrics());
+        getSupportActionBar().setElevation(elevation);
     }
 }

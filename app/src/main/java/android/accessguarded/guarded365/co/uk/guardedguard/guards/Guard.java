@@ -38,6 +38,8 @@ public class Guard implements Serializable {
     public String getLastName() {
         if (LastName == null) {
             return "";
+        } else if (LastName.contains(" ")) {
+            return LastName.split(" ")[0] + "\n" + LastName.split(" ")[1];
         } else if (LastName.length() > 8) {
             return "\n" + LastName;
         }
