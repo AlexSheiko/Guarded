@@ -14,6 +14,7 @@ public class Guard implements Serializable {
     private String LastName;
     private String ProfilePicUrl;
     private String SiteName;
+    private int SiteId;
     private int TaskCount;
     private int IncidentCount;
 
@@ -67,6 +68,10 @@ public class Guard implements Serializable {
             return "Site not specified";
         }
         return SiteName;
+    }
+
+    public int getSiteId() {
+        return SiteId;
     }
 
     public String getTaskCount(Context context) {

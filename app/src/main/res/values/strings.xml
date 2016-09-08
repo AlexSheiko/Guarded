@@ -3,6 +3,7 @@
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
     <string name="button_login">L o g i n</string>
+    <string name="submit">S u b m i t</string>
     <string name="error_empty_username">Enter your username</string>
     <string name="error_empty_password">Enter your password</string>
     <string name="error_login_invalid_credentials">Invalid account details</string>
@@ -10,6 +11,7 @@
     <string name="error_guards_network">Failed to retrieve guards,\ncheck your network connection</string>
     <string name="action_logout">Log Out</string>
     <string name="title_activity_review">Today</string>
+    <string name="comment_hint">Comment</string>
     <plurals name="tasks_count_label">
         <item quantity="one">%d task</item>
         <item quantity="other">%d tasks</item>

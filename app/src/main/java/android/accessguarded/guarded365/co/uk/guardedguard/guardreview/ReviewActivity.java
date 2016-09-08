@@ -65,6 +65,7 @@ public class ReviewActivity extends AppCompatActivity {
             }
         });
 
+        // Elevate action bar on scroll
         final ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
         scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
