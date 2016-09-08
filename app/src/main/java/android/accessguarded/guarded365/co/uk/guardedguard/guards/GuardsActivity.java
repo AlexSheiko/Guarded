@@ -98,12 +98,12 @@ public class GuardsActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
                 if (mAdapter.getItem(position).isHeader) {
-                    return 3;
+                    return 2;
                 } else {
                     return 1;
                 }
