@@ -22,7 +22,7 @@ public class Review {
     public Review() {
     }
 
-    public Review(int guardId, int siteId, int reviewerId, int uniformRating, int attendanceRating, int attitudeRating, int communicationRating, int performanceRating) {
+    public Review(int guardId, int siteId, int reviewerId, int uniformRating, int attendanceRating, int attitudeRating, int communicationRating, int performanceRating, String comments) {
         this.guardId = guardId;
         this.siteId = siteId;
         this.reviewerId = reviewerId;
@@ -31,9 +31,6 @@ public class Review {
         this.attitudeRating = attitudeRating;
         this.communicationRating = communicationRating;
         this.performanceRating = performanceRating;
-    }
-
-    public void setComment(String comment) {
-        this.comments = comment;
+        this.comments = comments;
     }
 }

@@ -10,6 +10,7 @@ import java.io.Serializable;
  */
 public class Guard implements Serializable {
 
+    private int Id;
     private String FirstName;
     private String LastName;
     private String ProfilePicUrl;
@@ -30,6 +31,10 @@ public class Guard implements Serializable {
     Guard(String firstName, String lastName) {
         FirstName = firstName;
         LastName = lastName;
+    }
+
+    public int getId() {
+        return Id;
     }
 
     private String getFirstName() {

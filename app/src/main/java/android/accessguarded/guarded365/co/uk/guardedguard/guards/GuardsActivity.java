@@ -68,6 +68,15 @@ public class GuardsActivity extends AppCompatActivity {
         return false;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            int position = data.getIntExtra("positionInAdapter", -1);
+            mAdapter.removeItemAt(position);
+        }
+    }
+
     public boolean isLoggedIn() {
         return getUserId() != 0;
     }

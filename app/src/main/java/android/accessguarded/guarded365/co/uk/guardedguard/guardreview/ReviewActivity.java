@@ -3,9 +3,11 @@ package android.accessguarded.guarded365.co.uk.guardedguard.guardreview;
 import android.accessguarded.guarded365.co.uk.guardedguard.R;
 import android.accessguarded.guarded365.co.uk.guardedguard.guards.Guard;
 import android.accessguarded.guarded365.co.uk.guardedguard.util.ReviewResponse;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +15,9 @@ import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,8 +39,11 @@ public class ReviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_review);
         removeActionBarShadow();
 
-        Guard guard = (Guard) getIntent().getSerializableExtra("guard");
-        populateDetails(guard);
+        populateDetails(getGuard());
+    }
+
+    private Guard getGuard() {
+        return (Guard) getIntent().getSerializableExtra("guard");
     }
 
     @Override
@@ -59,7 +66,7 @@ public class ReviewActivity extends AppCompatActivity {
         final ImageView photoImageView = (ImageView) findViewById(R.id.photoImageView);
 
         // Display data
-        nameTextView.setText(guard.getFullName().replaceAll("\n", ""));
+        nameTextView.setText(guard.getFullName().replaceAll("\n", " "));
         initialsTextView.setText(guard.getInitials());
         siteTextView.setText(guard.getSiteName());
         tasksTextView.setText(guard.getTaskCount(this));
@@ -99,7 +106,20 @@ public class ReviewActivity extends AppCompatActivity {
     }
 
     public void onClickSubmit(View view) {
-        Review review = new Review();
+        // Collect form data
+        int uniformRating = (int) ((RatingBar) findViewById(R.id.uniformRatingBar)).getRating();
+        int attendanceRating = (int) ((RatingBar) findViewById(R.id.attendanceRatingBar)).getRating();
+        int attitudeRating = (int) ((RatingBar) findViewById(R.id.attitudeRatingBar)).getRating();
+        int incidentRating = (int) ((RatingBar) findViewById(R.id.incidentRatingBar)).getRating();
+        int performanceRating = (int) ((RatingBar) findViewById(R.id.performanceRatingBar)).getRating();
+        String comment = ((EditText) findViewById(R.id.commentEditText)).getText().toString();
+
+        // Compose review object
+        Guard guard = getGuard();
+        Review review = new Review(guard.getId(), guard.getSiteId(), getUserId(),
+                uniformRating, attendanceRating, attitudeRating, incidentRating, performanceRating,
+                comment);
+
         submitReview(review);
     }
 
@@ -118,9 +138,12 @@ public class ReviewActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ReviewResponse> call, Response<ReviewResponse> response) {
                 ReviewResponse reviewResponse = response.body();
-                if (reviewResponse.isSuccessful()) {
-                    // TODO: Go back to a list of guards
-                    Toast.makeText(ReviewActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                if (reviewResponse == null || reviewResponse.isSuccessful()) {
+                    // Go back to a list of guards
+                    Toast.makeText(ReviewActivity.this, "Successfully Saved", Toast.LENGTH_SHORT).show();
+                    getIntent().putExtra("positionInAdapter", getIntent().getIntExtra("positionInAdapter", -1));
+                    setResult(RESULT_OK, getIntent());
+                    supportFinishAfterTransition();
                 } else {
                     // Display an error message
                     Toast.makeText(ReviewActivity.this, reviewResponse.getMessage() + "", Toast.LENGTH_SHORT).show();
@@ -136,5 +159,10 @@ public class ReviewActivity extends AppCompatActivity {
                 findViewById(R.id.progressBar).setVisibility(View.GONE);
             }
         });
+    }
+
+    private int getUserId() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        return prefs.getInt("userId", 0);
     }
 }

@@ -52,7 +52,7 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         final LineItem item = mDataset.get(position);
@@ -80,13 +80,14 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
                     // Open guard details
                     Intent intent = new Intent(mContext, ReviewActivity.class);
                     intent.putExtra("guard", guard);
+                    intent.putExtra("positionInAdapter", position);
                     Pair<View, String> p1 = Pair.create((View) holder.mInitialsTextView, "initials");
                     Pair<View, String> p2 = Pair.create((View) holder.mPhotoImageView, "photo");
                     Pair<View, String> p3 = Pair.create((View) holder.mNameTextView, "name");
                     Pair<View, String> p4 = Pair.create((View) holder.mTasksTextView, "tasks");
                     ActivityOptionsCompat options = ActivityOptionsCompat.
                             makeSceneTransitionAnimation((GuardsActivity) mContext, p1, p2, p3, p4);
-                    mContext.startActivity(intent, options.toBundle());
+                    ((GuardsActivity) mContext).startActivityForResult(intent, 1, options.toBundle());
                 }
             });
         }
@@ -103,12 +104,17 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
         return mDataset.size();
     }
 
-    public void add(LineItem lineItem) {
+    void add(LineItem lineItem) {
         mDataset.add(lineItem);
         notifyItemInserted(mDataset.size());
     }
 
-    public LineItem getItem(int position) {
+    void removeItemAt(int position) {
+        mDataset.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    LineItem getItem(int position) {
         return mDataset.get(position);
     }
 

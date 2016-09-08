@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:rating="3"
+                android:rating="4"
                 android:stepSize="1"/>
 
             <TextView
@@ -133,7 +133,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:rating="3"
+                android:rating="4"
                 android:stepSize="1"/>
 
             <TextView
@@ -149,7 +149,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:rating="3"
+                android:rating="4"
                 android:stepSize="1"/>
 
             <TextView
@@ -165,7 +165,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:rating="3"
+                android:rating="4"
                 android:stepSize="1"/>
 
             <TextView
@@ -177,14 +177,15 @@
                 android:text="Perfomance"/>
 
             <RatingBar
-                android:id="@+id/perfomanceRatingBar"
+                android:id="@+id/performanceRatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:rating="3"
+                android:rating="4"
                 android:stepSize="1"/>
 
             <EditText
+                android:id="@+id/commentEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="-4dp"
