@@ -107,12 +107,13 @@ public class GuardsActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        final int columnCount = getResources().getInteger(R.integer.column_count);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, columnCount);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
                 if (mAdapter.getItem(position).isHeader) {
-                    return 2;
+                    return columnCount;
                 } else {
                     return 1;
                 }
@@ -171,23 +172,6 @@ public class GuardsActivity extends AppCompatActivity {
                         mAdapter.add(new LineItem(guard, false, 0, 0));
                     }
                 }
-                // TODO: Remove after preview
-                mAdapter.add(new LineItem(new Guard("Second section"), true, 0, 0));
-                mAdapter.add(new LineItem(new Guard("Derek", "Smitherton"), false, 0, 0));
-                mAdapter.add(new LineItem(new Guard("Nathaniel", "Specrakovich"), false, 0, 0));
-                mAdapter.add(new LineItem(new Guard("Tracey", "Holdingforth"), false, 0, 0));
-                mAdapter.add(new LineItem(new Guard("Robert", "Day"), false, 0, 0));
-                mAdapter.add(new LineItem(new Guard("Randy", ""), false, 0, 0));
-                mAdapter.add(new LineItem(new Guard("Derek", "Smitherton"), false, 0, 0));
-                mAdapter.add(new LineItem(new Guard("Third section"), true, 0, 0));
-                mAdapter.add(new LineItem(new Guard("Nathaniel", "Specrakovich"), false, 0, 0));
-                mAdapter.add(new LineItem(new Guard("Tracey", "Holdingforth"), false, 0, 0));
-                mAdapter.add(new LineItem(new Guard("Fourth section"), true, 0, 0));
-                mAdapter.add(new LineItem(new Guard("Derek", "Smitherton"), false, 0, 0));
-                mAdapter.add(new LineItem(new Guard("Nathaniel", "Specrakovich"), false, 0, 0));
-                mAdapter.add(new LineItem(new Guard("Tracey", "Holdingforth"), false, 0, 0));
-                mAdapter.add(new LineItem(new Guard("Fifth section"), true, 0, 0));
-                mAdapter.add(new LineItem(new Guard("Robert", "Day"), false, 0, 0));
                 progressBar.setVisibility(View.GONE);
             }
 
