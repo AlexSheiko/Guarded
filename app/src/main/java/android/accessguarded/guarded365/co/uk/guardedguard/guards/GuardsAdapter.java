@@ -52,7 +52,7 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         final LineItem item = mDataset.get(position);
@@ -80,7 +80,7 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
                     // Open guard details
                     Intent intent = new Intent(mContext, ReviewActivity.class);
                     intent.putExtra("guard", guard);
-                    intent.putExtra("positionInAdapter", position);
+                    intent.putExtra("positionInAdapter", holder.getAdapterPosition());
                     Pair<View, String> p1 = Pair.create((View) holder.mInitialsTextView, "initials");
                     Pair<View, String> p2 = Pair.create((View) holder.mPhotoImageView, "photo");
                     Pair<View, String> p3 = Pair.create((View) holder.mNameTextView, "name");
@@ -137,22 +137,15 @@ class GuardsAdapter extends RecyclerView.Adapter<GuardsAdapter.ViewHolder> {
         }
     }
 
-    public static class LineItem {
+    static class LineItem {
 
-        public int sectionManager;
+        boolean isHeader;
 
-        public int sectionFirstPosition;
+        Guard guard;
 
-        public boolean isHeader;
-
-        public Guard guard;
-
-        public LineItem(Guard guard, boolean isHeader, int sectionManager,
-                        int sectionFirstPosition) {
+        LineItem(Guard guard, boolean isHeader) {
             this.isHeader = isHeader;
             this.guard = guard;
-            this.sectionManager = sectionManager;
-            this.sectionFirstPosition = sectionFirstPosition;
         }
     }
 }

@@ -166,10 +166,10 @@ public class GuardsActivity extends AppCompatActivity {
                 Sites sites = response.body();
                 for (Site site : sites.getList()) {
                     // Add list headers
-                    mAdapter.add(new LineItem(new Guard(site.getName()), true, 0, 0));
+                    mAdapter.add(new LineItem(new Guard(site.getName()), true));
                     // Add guards for each header
                     for (Guard guard : site.getGuards()) {
-                        mAdapter.add(new LineItem(guard, false, 0, 0));
+                        mAdapter.add(new LineItem(guard, false));
                     }
                 }
                 progressBar.setVisibility(View.GONE);
