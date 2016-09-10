@@ -159,13 +159,14 @@
                 android:hint="@string/comment_hint"
                 android:inputType="textMultiLine|textCapSentences"
                 android:paddingBottom="16dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:paddingTop="16dp"/>
 
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="100dp"
                 android:layout_marginTop="48dp"
                 android:orientation="horizontal">
