@@ -24,7 +24,7 @@
         android:id="@+id/usernameField"
         style="@style/InputField"
         android:hint="@string/hint_username"
-        android:inputType="textPersonName|textCapWords"/>
+        android:inputType="textPersonName"/>
 
     <EditText
         android:id="@+id/passwordField"
