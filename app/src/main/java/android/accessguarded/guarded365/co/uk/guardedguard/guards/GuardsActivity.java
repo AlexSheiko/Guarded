@@ -20,7 +20,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
-import android.widget.ProgressBar;
 
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 import retrofit2.Call;
@@ -29,6 +28,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static android.accessguarded.guarded365.co.uk.guardedguard.R.id.progressBar;
 import static android.accessguarded.guarded365.co.uk.guardedguard.R.menu.guards;
 import static android.accessguarded.guarded365.co.uk.guardedguard.guards.GuardsAdapter.LineItem;
 
@@ -168,8 +168,7 @@ public class GuardsActivity extends AppCompatActivity {
     }
 
     private void loadGuards() {
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.VISIBLE);
+        mSwipeRefreshLayout.setRefreshing(true);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.guarded365.co.uk/api/")
@@ -193,7 +192,6 @@ public class GuardsActivity extends AppCompatActivity {
                         mAdapter.add(new LineItem(guard, false));
                     }
                 }
-                progressBar.setVisibility(View.GONE);
                 mSwipeRefreshLayout.setRefreshing(false);
             }
 
