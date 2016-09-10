@@ -32,8 +32,6 @@ public class LoginActivity extends AppCompatActivity {
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mUsernameField = (EditText) findViewById(R.id.usernameField);
         mPasswordField = (EditText) findViewById(R.id.passwordField);
-        mPasswordField.requestFocus(); // TODO: Remove before production
-        mPasswordField.setSelection("api_test_password".length()); // TODO: Remove before production
         findViewById(R.id.loginButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

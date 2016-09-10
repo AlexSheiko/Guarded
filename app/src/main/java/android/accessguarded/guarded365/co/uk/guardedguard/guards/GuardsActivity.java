@@ -73,8 +73,11 @@ public class GuardsActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
+            // Animate guard removal
             int position = data.getIntExtra("positionInAdapter", -1);
             mAdapter.removeItemAt(position);
+            // Refresh the list
+            loadGuards();
         }
     }
 
