@@ -10,6 +10,10 @@
 
         <!--Enable shared element animation-->
         <item name="android:windowContentTransitions">true</item>
+
+        <!--Make sure that RatingBar colors are not overridden-->
+        <item name="android:progressTint">@color/colorAccent</item>
+        <item name="android:thumbTint">@color/colorAccent</item>
     </style>
 
     <!--Login screen theme-->
