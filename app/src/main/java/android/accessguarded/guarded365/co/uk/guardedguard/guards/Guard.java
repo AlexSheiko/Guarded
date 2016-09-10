@@ -75,6 +75,10 @@ public class Guard implements Serializable {
         return SiteName;
     }
 
+    public void setSiteName(String siteName) {
+        SiteName = siteName;
+    }
+
     public int getSiteId() {
         return SiteId;
     }

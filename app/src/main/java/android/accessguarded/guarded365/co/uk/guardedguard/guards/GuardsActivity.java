@@ -188,6 +188,9 @@ public class GuardsActivity extends AppCompatActivity {
                     mAdapter.add(new LineItem(new Guard(site.getName()), true));
                     // Add guards for each header
                     for (Guard guard : site.getGuards()) {
+                        // set site name based on section
+                        guard.setSiteName(site.getName());
+                        // add item to the list
                         mAdapter.add(new LineItem(guard, false));
                     }
                 }
