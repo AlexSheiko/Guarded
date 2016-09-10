@@ -168,7 +168,6 @@ public class GuardsActivity extends AppCompatActivity {
 
     private void loadGuards() {
         // reset list state
-        findViewById(R.id.emptyTextView).setVisibility(View.GONE);
         mSwipeRefreshLayout.setRefreshing(true);
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -197,12 +196,18 @@ public class GuardsActivity extends AppCompatActivity {
                 // display empty view if needed
                 if (mAdapter.getItemCount() == 0) {
                     findViewById(R.id.emptyTextView).setVisibility(View.VISIBLE);
+                } else {
+                    findViewById(R.id.emptyTextView).setVisibility(View.GONE);
+                    findViewById(R.id.errorTextView).setVisibility(View.GONE);
                 }
                 mSwipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
             public void onFailure(Call<Sites> call, Throwable t) {
+                // Remove items from previous load
+                mAdapter.clear();
+                // Display error message
                 findViewById(R.id.errorTextView).setVisibility(View.VISIBLE);
                 mSwipeRefreshLayout.setRefreshing(false);
             }
