@@ -106,83 +106,48 @@
             android:padding="16dp">
 
             <TextView
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:text="Uniform"/>
+                style="@style/RatingBarLabel"
+                android:text="Uniform Rating"/>
 
             <RatingBar
                 android:id="@+id/uniformRatingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numStars="5"
-                android:rating="4"
-                android:stepSize="1"/>
+                style="@style/RatingBar"/>
 
             <TextView
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/RatingBarLabel"
                 android:layout_marginTop="16dp"
-                android:alpha="0.7"
-                android:text="Attendance"/>
+                android:text="Attendance Rating"/>
 
             <RatingBar
                 android:id="@+id/attendanceRatingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numStars="5"
-                android:rating="4"
-                android:stepSize="1"/>
+                style="@style/RatingBar"/>
 
             <TextView
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/RatingBarLabel"
                 android:layout_marginTop="16dp"
-                android:alpha="0.7"
-                android:text="Attitude"/>
+                android:text="Attitude Rating"/>
 
             <RatingBar
                 android:id="@+id/attitudeRatingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numStars="5"
-                android:rating="4"
-                android:stepSize="1"/>
+                style="@style/RatingBar"/>
 
             <TextView
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/RatingBarLabel"
                 android:layout_marginTop="16dp"
-                android:alpha="0.7"
-                android:text="Incident rating"/>
+                android:text="Incident Rating"/>
 
             <RatingBar
                 android:id="@+id/incidentRatingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numStars="5"
-                android:rating="4"
-                android:stepSize="1"/>
+                style="@style/RatingBar"/>
 
             <TextView
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/RatingBarLabel"
                 android:layout_marginTop="16dp"
-                android:alpha="0.7"
-                android:text="Perfomance"/>
+                android:text="Performance Rating"/>
 
             <RatingBar
                 android:id="@+id/performanceRatingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numStars="5"
-                android:rating="4"
-                android:stepSize="1"/>
+                style="@style/RatingBar"/>
 
             <EditText
                 android:id="@+id/commentEditText"
