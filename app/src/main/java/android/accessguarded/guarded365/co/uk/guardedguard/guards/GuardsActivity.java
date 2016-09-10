@@ -28,7 +28,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static android.accessguarded.guarded365.co.uk.guardedguard.R.id.progressBar;
 import static android.accessguarded.guarded365.co.uk.guardedguard.R.menu.guards;
 import static android.accessguarded.guarded365.co.uk.guardedguard.guards.GuardsAdapter.LineItem;
 
@@ -168,6 +167,8 @@ public class GuardsActivity extends AppCompatActivity {
     }
 
     private void loadGuards() {
+        // reset list state
+        findViewById(R.id.emptyTextView).setVisibility(View.GONE);
         mSwipeRefreshLayout.setRefreshing(true);
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -182,8 +183,6 @@ public class GuardsActivity extends AppCompatActivity {
             public void onResponse(Call<Sites> call, Response<Sites> response) {
                 Sites sites = response.body();
                 mAdapter.clear();
-                // TODO: Remove before presentation
-                mAdapter.add(new LineItem(new Guard("sdfg", "dfg"), false));
                 for (Site site : sites.getList()) {
                     // Add list headers
                     mAdapter.add(new LineItem(new Guard(site.getName()), true));
@@ -192,13 +191,17 @@ public class GuardsActivity extends AppCompatActivity {
                         mAdapter.add(new LineItem(guard, false));
                     }
                 }
+                // display empty view if needed
+                if (mAdapter.getItemCount() == 0) {
+                    findViewById(R.id.emptyTextView).setVisibility(View.VISIBLE);
+                }
                 mSwipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
             public void onFailure(Call<Sites> call, Throwable t) {
                 findViewById(R.id.errorTextView).setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE);
+                mSwipeRefreshLayout.setRefreshing(false);
             }
         });
     }

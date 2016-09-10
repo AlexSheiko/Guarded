@@ -13,6 +13,7 @@
     <string name="action_logout">Log Out</string>
     <string name="title_activity_review">Today</string>
     <string name="comment_hint">Comment</string>
+    <string name="guards_empty">No more guards for today</string>
     <plurals name="tasks_count_label">
         <item quantity="one">%d task</item>
         <item quantity="other">%d tasks</item>
