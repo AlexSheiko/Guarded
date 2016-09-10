@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,6 +35,7 @@ import static android.accessguarded.guarded365.co.uk.guardedguard.guards.GuardsA
 public class GuardsActivity extends AppCompatActivity {
 
     private GuardsAdapter mAdapter;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +123,7 @@ public class GuardsActivity extends AppCompatActivity {
         });
         recyclerView.setLayoutManager(layoutManager);
 
-        // specify an adapter (see also next example)
+        // specify an adapter
         mAdapter = new GuardsAdapter(this);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new SlideInUpAnimator(new OvershootInterpolator(1f)));
@@ -137,16 +139,32 @@ public class GuardsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // allow to refresh the list of guards
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Refresh the list
+                loadGuards();
+            }
+        });
+        // Configure the refreshing colors
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
     }
 
     private void removeActionBarShadow() {
-        getSupportActionBar().setElevation(0);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setElevation(0);
+        }
     }
 
     private void displayActionBarShadow() {
-        Resources resources = this.getResources();
-        float elevation = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, resources.getDisplayMetrics());
-        getSupportActionBar().setElevation(elevation);
+        if (getSupportActionBar() != null) {
+            Resources resources = this.getResources();
+            float elevation = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, resources.getDisplayMetrics());
+            getSupportActionBar().setElevation(elevation);
+        }
     }
 
     private void loadGuards() {
@@ -164,6 +182,9 @@ public class GuardsActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Sites> call, Response<Sites> response) {
                 Sites sites = response.body();
+                mAdapter.clear();
+                // TODO: Remove before presentation
+                mAdapter.add(new LineItem(new Guard("sdfg", "dfg"), false));
                 for (Site site : sites.getList()) {
                     // Add list headers
                     mAdapter.add(new LineItem(new Guard(site.getName()), true));
@@ -173,6 +194,7 @@ public class GuardsActivity extends AppCompatActivity {
                     }
                 }
                 progressBar.setVisibility(View.GONE);
+                mSwipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
